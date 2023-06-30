@@ -1,0 +1,25 @@
+REST API-JSON
+
+//users
+
+GET /users -HTML Document Render
+GET /api/users -List all users as JSON 
+
+GET /api/users/1-Get the user with ID 1
+GET /api/users/2-GET the user with ID 2
+
+Dynamic Path Parametres 
+GET /api/users/:id
+:id -> variable | Dynamic
+
+
+POST /users-Create new user
+
+PATCH/user/id-Edit the user with ID 1
+
+DELETE /users/1 -Delete  the users with ID-1 
+
+
+
+//1--videos Building Rest Api using node and Express
+  2--Introduction to PostMan using RestAPI
