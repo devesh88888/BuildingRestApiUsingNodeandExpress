@@ -9,6 +9,32 @@ const PORT = 8000;
 //middleware- plugin
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+  fs.appendFile(
+    "log.txt",
+    `\n${Date.now()}:${req.ip} ${req.method}: ${req.path}`,
+    (err, data) => {
+      next();
+    }
+  );
+  next();
+});
+
+// //middleware 1
+// app.use((req, res, next) => {
+//   console.log("Hello from middleware 1");
+//   req.myUsername = "piyushgarg.dev";
+//   next();
+//   // return res.json({ msg: "Hello from middware 1" });
+// });
+// //middleware 2
+// app.use((req, res, next) => {
+//   console.log("Hello from middleware 2", req.myUsername);
+//   req.CreditCardnumber = "123";
+//   next();
+//   // return res.end("Hey");
+// });
+
 //routes
 app.get("/users", (req, res) => {
   const html = `
@@ -21,6 +47,7 @@ app.get("/users", (req, res) => {
 
 //REST API
 app.get("/api/users", (req, res) => {
+  console.log("I am in get route", req.myUsername);
   return res.json(users);
 });
 //Dynamic Path Parametres
