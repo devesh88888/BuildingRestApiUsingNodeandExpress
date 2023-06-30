@@ -17,7 +17,7 @@ app.use((req, res, next) => {
       next();
     }
   );
-  next();
+  //next();
 });
 
 // //middleware 1
@@ -47,7 +47,7 @@ app.get("/users", (req, res) => {
 
 //REST API
 app.get("/api/users", (req, res) => {
-  console.log("I am in get route", req.myUsername);
+  //  console.log("I am in get route", req.myUsername);
   return res.json(users);
 });
 //Dynamic Path Parametres
@@ -61,8 +61,8 @@ app.post("/api/users", (req, res) => {
   //TODO Create new User
   const body = req.body;
   users.push({ ...body, id: users.length + 1 });
-  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (error, data) => {
-    return res.json({ status: "success", id: users.length });
+  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+    return res.status(201).json({ status: "success", id: users.length });
   });
   // console.log("Body", body);
   // return res.json({ status: "pending" });
